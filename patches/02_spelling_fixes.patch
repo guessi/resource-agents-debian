@@ -1,0 +1,33 @@
+--- a/heartbeat/nfsserver
++++ b/heartbeat/nfsserver
+@@ -39,7 +39,7 @@ nfsserver_meta_data() {
+ <version>1.0</version>
+ 
+ <longdesc lang="en">
+-Nfsserver helps to manage the Linux nfs server as a failover-able resource in Linux-HA.
++Nfsserver helps one to manage the Linux nfs server as a failover-able resource in Linux-HA.
+ It depends on Linux specific NFS implementation details, so is considered not portable to other platforms yet.
+ </longdesc>
+ 
+--- a/heartbeat/nginx
++++ b/heartbeat/nginx
+@@ -721,7 +721,7 @@ Case insensitive.
+ Client to use to query to Nginx for level 10 and level 20 tests.
+ If not specified, the RA will try to find one on the system.
+ Currently, wget and curl are supported, with curl being preferred.
+-For example, you can set this paramter to "wget" if you prefer that to curl.
++For example, you can set this parameter to "wget" if you prefer that to curl.
+ </longdesc>
+ <shortdesc lang="en">http client</shortdesc>
+ <content type="string" />
+--- a/heartbeat/scsi2reservation
++++ b/heartbeat/scsi2reservation
+@@ -35,7 +35,7 @@ scsi-2 reservation
+ <parameter name="scsi_reserve" unique="0" required="0">
+ <longdesc lang="en">
+ The scsi_reserve is a command from scsires package. 
+-It helps to issue SCSI-2 reservation on SCSI devices.
++It helps one to issue SCSI-2 reservation on SCSI devices.
+ </longdesc>
+ <shortdesc lang="en">Manages exclusive access to shared storage media thrugh SCSI-2 reservations</shortdesc>
+ <content type="string" default="/usr/sbin/scsi_reserve" />
