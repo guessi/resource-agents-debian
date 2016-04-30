@@ -1,0 +1,34 @@
+#!/usr/bin/make -f
+
+DPKG_EXPORT_BUILDFLAGS = 1
+include /usr/share/dpkg/buildflags.mk
+
+get-orig-source:
+	uscan --noconf --force-download --rename --repack --download-current-version --destdir=/
+
+%:
+	dh $@ --with=systemd --fail-missing
+
+override_dh_auto_configure:
+	dh_testdir
+	# Remove epoch or else the Makefile explodes
+	dpkg-parsechangelog -S Version | sed -e 's/.*://' > .tarball-version
+	[ -f configure ] || sh autogen.sh
+	if [ -e configure -a ! -x configure ]; then chmod u+x configure; fi
+	./configure --sbindir=/usr/sbin --libexecdir=/usr/lib			\
+		    --with-ocf-root=/usr/lib/ocf --with-initdir=/etc/init.d	\
+		    --prefix=/usr --sysconfdir=/etc --localstatedir=/var	\
+		    --mandir=/usr/share/man --libdir=/usr/lib --disable-fatal-warnings \
+		    SHELL=/bin/bash
+
+override_dh_auto_install:
+	$(MAKE) install DESTDIR=$(CURDIR)/debian/tmp
+
+	# drbd-utils ships this itself
+	rm $(CURDIR)/debian/tmp/usr/share/cluster/drbd.metadata
+	rm $(CURDIR)/debian/tmp/usr/share/cluster/drbd.sh
+
+override_dh_auto_clean:
+	dh_auto_clean
+	rm -f .version .tarball-version
+	find . -name Makefile.in | xargs -r rm

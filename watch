@@ -1,0 +1,2 @@
+version=3
+https://github.com/ClusterLabs/resource-agents/releases/ .*archive/v([\d\.]*).*\.tar\.gz
