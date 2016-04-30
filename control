@@ -10,7 +10,6 @@ Build-Depends: autoconf,
                cluster-glue-dev,
                debhelper (>= 9),
                dh-exec,
-               dh-systemd,
                docbook-xml,
                docbook-xsl,
                libglib2.0-dev,
@@ -23,8 +22,6 @@ Build-Depends: autoconf,
                libtool,
                pkg-config,
                python,
-#              for systemd.pc:
-               systemd [linux-any],
                xsltproc
 Standards-Version: 3.9.7
 Homepage: https://github.com/ClusterLabs/resource-agents
